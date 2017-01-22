@@ -46,9 +46,9 @@ The control protocol is a bit strange in that even though TCP is being used, the
 ##### Request
 <tspan style="font-family: consolas,monaco,monospace; font-size: 15px;">0000&nbsp;&nbsp;&nbsp;&nbsp;</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: white; background-color:red">&nbsp;49 50 54 56 5f 43 4d 44&nbsp;</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: white; background-color:blue">&nbsp;0a 0a 0a 49&nbsp;</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: black; background-color:yellow">&nbsp;23 2a&nbsp;</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: black; background-color:orange">&nbsp;74 00&nbsp;</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: white; background-color:red">&nbsp;IPTV_CMD</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: white; background-color:blue">...I</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: black; background-color:yellow">#*</tspan><tspan style="font-family: consolas,monaco,monospace; font-size: 15px; font-weight: bold; color: black; background-color:orange">&nbsp;t.&nbsp;</tspan>
 ```
-
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a 49 23 2a 74 00  IPTV_CMD...I#*t.
 0010   fe 00 0b 09 00 00 00 00 00 00 00 00 00 00 00     ...............```
+
 ##### Response
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a bb 23 29 74 00  IPTV_CMD....#)t.
@@ -56,11 +56,13 @@ The control protocol is a bit strange in that even though TCP is being used, the
 0020   37 32 30 00 00 00 00 00 00 00 00 00 00 00 00 00  720.............
 0030   00 00 00 00 0a 0a 0a bb 23 29 ff ff 01 01 00 01  ........#)......
 0040   c0                                               .```
+
 #### Get Name
 ##### Request
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a 49 23 29 74 00  IPTV_CMD...I#)t.
 0010   1f 00 02 21 00 00                                ...!..```
+
 ##### Response
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a bb 23 29 74 00  IPTV_CMD....#)t.
@@ -75,6 +77,7 @@ aka is input video active?
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a 49 23 29 74 00  IPTV_CMD...I#)t.
 0010   11 00 02 13 00 00                                ......```
+
 ##### Response
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a bb 23 29 74 00  IPTV_CMD....#)t.
@@ -86,12 +89,14 @@ aka is input video active?
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a 49 23 29 74 00  IPTV_CMD...I#)t.
 0010   19 00 02 1b 00 00                                ......```
+
 ##### Response
 ```
 0000   49 50 54 56 5f 43 4d 44 0a 0a 0a bb 23 29 74 00  IPTV_CMD....#)t.
 0010   1a 00 0e 28 00 c0 a8 01 01 ff ff ff 00 c0 a8 01  ...(............
 0020   fe ce                                            ..```
 14 40 0 192.168.1.1 255.255.255.0 192.168.1.254
+
 #### Get FHD Bitrate (1080p)
 ##### Request
 ```
