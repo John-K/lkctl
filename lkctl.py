@@ -125,6 +125,20 @@ class IPTV_DeviceControl:
             return name
         return None
 
+    def GetVersions(self):
+        msg = struct.pack(">HHHBB", 0x7401, 0x0f00, 0x0212, 0, 0)
+
+        data = self.__performCommand(msg)
+        if data:
+            if not ord(data[18]) == 0x41:
+                print "Got invalid length %d (should be 65)" % ord(data[18])
+                printHex(data)
+                return None
+            tmp = data[20:]
+            fw_ver, encoder_ver, checksum = struct.unpack("32s32sB", tmp)
+            return fw_ver, encoder_ver
+        return None, None
+
 def setupArgs():
     parser = argparse.ArgumentParser(description="LK373A compatible control utility")
     group = parser.add_mutually_exclusive_group()
@@ -164,6 +178,8 @@ if __name__ == '__main__':
                 print "Failed to get device name"
             else:
                 print "Device name is %s" % name
+            fw, codec = d.GetVersions()
+            print "FW ver: %s\nCodec ver: %s" % (fw, codec)
         except Empty:
             if args.ip:
                 sys.exit(0)
