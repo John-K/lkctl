@@ -48,7 +48,6 @@ def signal_handler(signal, frame):
     sys.exit(0)
 
 class IPTV_DeviceControl:
-    _knockPort = 9002
     _controlPort = 9001
     def __init__(self, ip):
         self._ip = ip
