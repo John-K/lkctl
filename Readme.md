@@ -3,6 +3,14 @@ My discoveries upon purchasing a [Kooye HDMI Extender LKV373A V3.0](https://www.
 
 The unit I received in January 2017 had firmware `4.0.0.0.20160722` and encoder `7.1.2.0.11.20160722`. This version does not have the 'Zero length UDP packet bug' as described by [@OpenTechLabChan](https://twitter.com/OpenTechLabChan) [here](https://opentechlab.org.uk/videos:003:notes) and [Danman](https://blog.danman.eu/new-version-of-lenkeng-hdmi-over-ip-extender-lkv373a/)
 
+## lkctl
+lkctl is a Python2 script to interface with LKV373A devices over the network.
+
+Current functionality:
+* discovering devices by listening for broadcasts on UDP port 6000
+* fetch device name and version number information
+* reboot the device
+
 ## Streaming Video
 Using [VLC](http://videolan.org), the stream can be viewed by using `Open Network Stream` with `rtp://239.255.42.42:5004`
 
