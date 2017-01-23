@@ -139,12 +139,28 @@ class IPTV_DeviceControl:
             return fw_ver, encoder_ver
         return None, None
 
+    def reboot(self):
+        msg = struct.pack(">HHHBB", 0x7400, 0xf000, 0x02f2, 0, 0)
+
+        data = self.__performCommand(msg)
+        if data:
+            if not len(data) == 22:
+                print "Got invalid length %d (should be 22)" % len(data)
+                printHex(data)
+                return False
+            if not ord(data[18]) == 0x02 and not ord(data[19]) == 0xf3:
+                print "Got invalid command response %s %s (expected 02 f3)" % (hex(ord(data[18])), hex(ord(data[19])))
+                return False
+            return True
+        return False
+
 def setupArgs():
     parser = argparse.ArgumentParser(description="LK373A compatible control utility")
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--ip', help="IP of device to manage")
     group.add_argument('-l', '--listen', help="Listen for units broadcasting their existence", action="store_true")
 #    group.add_argument('-s', '--search', help="Search for units via UDP broadcast", action="store_true")
+    parser.add_argument('-r', '--reboot', help="Reboot the device", action="store_true")
 
     return parser
 
@@ -180,6 +196,8 @@ if __name__ == '__main__':
                 print "Device name is %s" % name
             fw, codec = d.GetVersions()
             print "FW ver: %s\nCodec ver: %s" % (fw, codec)
+            if args.reboot:
+                d.reboot()
         except Empty:
             if args.ip:
                 sys.exit(0)
